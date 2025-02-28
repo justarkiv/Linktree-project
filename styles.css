@@ -1,0 +1,372 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', sans-serif;
+    background: repeating-linear-gradient(
+        45deg,
+        #dcdcdc,
+        #dcdcdc 10px,
+        #c4c4c4 10px,
+        #c4c4c4 20px
+    );
+    color: #77c0a0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: scrollBg 10s linear infinite;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background animation */
+@keyframes scrollBg {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 50px 50px;
+    }
+}
+
+/* Background image avec animation */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: url("pixelpdp.jpg");
+    background-repeat: repeat;
+    background-size: 50px 50px;
+    animation: moveBackground 10s linear infinite;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+@keyframes moveBackground {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+/* Animation uniquement dans la frame mobile */
+.iphone-frame {
+    width: 280px;
+    height: 500px;
+    background-color: #7696c5;
+    border-radius: 40px;
+    border: 5px solid #333333;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(65, 65, 65, 0.8);
+    position: relative;
+    z-index: 10;
+    background-image: url("https://github.com/Kageetai/mario-background-parallax/blob/master/img/mario.gif?raw=true"),
+                      url("https://github.com/Kageetai/mario-background-parallax/blob/master/img/ground.png?raw=true"),
+                      url("https://github.com/Kageetai/mario-background-parallax/blob/master/img/bushes.png?raw=true"),
+                      url("https://raw.githubusercontent.com/Kageetai/mario-background-parallax/master/img/back.png?raw=true");
+    background-color: #f8e0b0;
+    background-repeat: no-repeat, repeat-x, repeat-x, repeat-x;
+    background-position: left 30% bottom 22px, left 0px bottom 0px, left 0px bottom 22px, left 0px bottom 0px;
+    animation: back 15s infinite linear;
+}
+
+@keyframes back {
+  0% {
+    background-position: left 30% bottom 22px, left 0px bottom 0px,
+      left 0px bottom 22px, left 0px bottom 0px;
+  }
+  50% {
+    background-position: left 50% bottom 22px,
+      left -816px bottom 0px, left -508px bottom 22px, left -256px bottom 0px;
+  }
+  100% {
+    background-position: left 30% bottom 22px,
+      left -1632px bottom 0px, left -1016px bottom 22px, left -512px bottom 0px;
+  }
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ddd;
+}
+
+.nav-btn {
+    width: 24px;
+    height: 24px;
+    background-color: #aaa;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #fff;
+    box-shadow: 0 2px #888;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: #888;
+    transform: scale(1.1);
+}
+
+.address-bar {
+    flex: 1;
+    margin: 0 10px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border-radius: 12px;
+    font-size: 10px;
+    color: #666;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+header {
+    text-align: center;
+    padding: 20px 20px;
+    animation: fadeIn 1s ease-out;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Ajout de la transition pour l'agrandissement */
+}
+
+.profile-img:hover {
+    transform: scale(1.1); /* Agrandissement de l'image au survol */
+}
+.title {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #fff;
+}
+.subtitle {
+    font-size: 8px;
+    color: #77c0a0;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden; /* Cacher le dépassement pour garder l'animation propre */
+    width: 0; /* Largeur initiale à 0 pour l'effet de frappe */
+    animation: typing 5s steps(30) 0.5s infinite normal both, blink 0.75s step-end infinite; /* Typage et curseur clignotant infiniment */
+}
+
+/* Animation pour taper le texte */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%; /* Rendre le texte entièrement visible */
+    }
+}
+
+/* Animation pour le curseur clignotant */
+@keyframes blink {
+    50% {
+        border-color: transparent; /* Le curseur clignote */
+    }
+}
+
+/* Chaque lettre aura une classe "letter" avec une animation */
+.letter {
+    display: inline-block;
+    opacity: 0;  /* Commence invisible */
+    transform: translateY(10px);  /* Chaque lettre commence légèrement décalée verticalement */
+    animation: fadeInUp 0.5s ease-out forwards;  /* Animation pour faire apparaître chaque lettre */
+}
+
+/* Animation de l'apparition des lettres */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;  /* Fait apparaître la lettre */
+        transform: translateY(0);  /* Remet la lettre à sa position normale */
+    }
+}
+
+/* Animation avec délai progressif pour chaque lettre */
+.letter:nth-child(1) {
+    animation-delay: 0s;
+}
+.letter:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.letter:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.btn {
+    background-color: #89d1b1;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px #488f70;
+    font-size: 14px;
+    text-align: center;
+    transition: 0.2s;
+    width: 80%;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    background-color:  #fff;
+    box-shadow: 0 2px #55549a;
+    transform: translateY(2px);
+}
+
+/* Animation d'apparition des logos */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: transparent;
+    animation: fadeIn 1.5s ease-out; /* Applique l'animation d'apparition */
+}
+
+/* Animation de zoom et de changement de couleur lors du survol */
+.icon-link {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: transparent;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Ajout d'un effet de zoom au survol */
+.icon-link:hover {
+    transform: scale(1.2); /* Agrandit légèrement l'icône */
+    background-color: rgba(255, 255, 255, 0.2); /* Fond léger au survol */
+}
+
+/* Animation des logos */
+.icon-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: fadeInIcon 1s forwards;
+}
+
+.icon-link#instagram img {
+    animation-delay: 0.2s; /* Délai d'animation pour Instagram */
+}
+
+.icon-link#messenger img {
+    animation-delay: 0.4s; /* Délai d'animation pour Messenger */
+}
+
+.icon-link#tumblr img {
+    animation-delay: 0.6s; /* Délai d'animation pour Tumblr */
+}
+
+/* Animation d'apparition des icônes */
+@keyframes fadeInIcon {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: transparent; 
+    padding: 10px;
+  }
+  
+  .icon-link {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color:transparent; 
+  }
+  
+.icon-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+.icon {
+    width: 15px;
+    height: 15px;
+    border-radius: px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.icon:hover {
+    background-color: #fFF;
+    transform: scale(1.1);
+}
+
+footer {
+    background-color: #444;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    margin-top: auto;
+    position: relative;
+}
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    box-shadow: 0 0 5px rgba(246, 235, 82, 0.5);
+}
